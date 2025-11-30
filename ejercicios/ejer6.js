@@ -6,6 +6,7 @@ const btnguardar=document.getElementById('guardarhora');
 const btnimprimir=document.getElementById('imprimirhora');
 const imprimir = document.getElementById('imprimir');
 let myinterval = setInterval(mostrarHora, 1000);
+let ultimaHora = null;
 
 function mostrarHora(){
     const ahora = new Date();
