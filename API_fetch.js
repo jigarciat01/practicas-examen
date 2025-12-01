@@ -1,24 +1,21 @@
 function cargarDesdeAPI() {
-    const url = 'https://jsonplaceholder.typicode.com/users'; // Cambiar URL
+    const url = 'https://zenquotes.io/api/today'; 
     
     fetch(url)
-        .then(response => response.json()) // 1. Convertir a JSON
+        .then(response => response.json()) 
         .then(data => {
-            // 2. Aquí tienes los datos en 'data'
             pintarEnHTML(data); 
         })
-        .catch(error => console.error("Error cargando:", error));
 }
 
 function pintarEnHTML(datos) {
     const contenedor = document.getElementById('resultado');
-    contenedor.innerHTML = ''; // IMPORTANTE: Limpiar antes de pintar
+    contenedor.innerHTML = ''; 
     
-    // Recorrer y crear HTML
     datos.forEach(item => {
         contenedor.innerHTML += `
             <div class="tarjeta">
-                <h3>${item.name}</h3> <p>${item.email}</p>
+                <h2>"${item.q}"</h2> <p>-${item.a}</p>
             </div>
         `;
     });
