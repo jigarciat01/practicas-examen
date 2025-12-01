@@ -25,13 +25,15 @@ function pintarEnHTML(datos) {
 
 function agregarTarea() {
     let tareatext = tarea.value;
-    tareas.push(tareatext);
-    localStorage.setItem(tarea_key, JSON.stringify(tareas));
-    tarea.value = '';
+    if (tareatext.trim() !== "") {
+        tareas.push(tareatext);
+        localStorage.setItem(tarea_key, JSON.stringify(tareas));
+        tarea.value = '';
+    }
+    pintartarea();
 }
 
 function pintartarea() {
-    agregarTarea(); 
     lista.innerHTML = '';
     tareas.forEach((textoTarea, index) => {
         let item = document.createElement("li"); 
@@ -47,12 +49,21 @@ function pintartarea() {
             if (posicion > -1) {
                 tareas.splice(posicion, 1);
             }
+            localStorage.setItem(tarea_key, JSON.stringify(tareas));
         });
 
         item.appendChild(boton);
         lista.appendChild(item);
     });
+    listatareas.appendChild(lista);
 }
 
-btntarea.addEventListener('click', pintartarea);
+btntarea.addEventListener('click', agregarTarea);
 
+document.addEventListener('DOMContentLoaded', () => {
+    const datosguardados=localStorage.getItem(tarea_key);
+    if (datosguardados) {
+        tareas=JSON.parse(datosguardados);
+    }
+    pintartarea();
+});
