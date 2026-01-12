@@ -24,7 +24,6 @@ function anadir_jgt(){
         vacio_jgt=true;
     }
     if(!vacio_jgt && !repetido_jgt){
-        alert('se ha añadido');
         array_jgt.push(valor_jgt);
         localStorage.setItem(broma_key_jgt,JSON.stringify(array_jgt));
         pintar_jgt();
